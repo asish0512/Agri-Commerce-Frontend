@@ -17,28 +17,28 @@ const Sales = () => {
 
 
 
-  const handleSubmit = (event) => {
-    // console.log(sex?.value, breed?.value, weight, photoUrl);
-    const data = { load_id: loadno, agent_id: agentno, source: source, destination:destination};
-    const url = "http://localhost:8000/sales/addConsign/"
-    postJSON(url, data);
-    //fetchData()
-    event.preventDefault();
-};
+//   const handleSubmit = (event) => {
+//     // console.log(sex?.value, breed?.value, weight, photoUrl);
+//     const data = { load_id: loadno, agent_id: agentno, source: source, destination:destination};
+//     const url = "http://localhost:8000/sales/addConsign/"
+//     postJSON(url, data);
+//     //fetchData()
+//     event.preventDefault();
+// };
 
 
-const fetchData = ()=> {
-    fetch('http://localhost:8000/logistics/getConsigns')
-    .then(results => results.json())
-    .then(data => {
-      setConsignments (data?.data)
+// const fetchData = ()=> {
+//     fetch('http://localhost:8000/logistics/getConsigns')
+//     .then(results => results.json())
+//     .then(data => {
+//       setConsignments (data?.data)
             
-    });
-  }
-  useEffect(() => {
-       fetchData(); 
-       console.log("all goats", consignments) 
-  }, []);
+//     });
+//   }
+//   useEffect(() => {
+//        fetchData(); 
+//        console.log("all goats", consignments) 
+//   }, []);
 
   return (
     <div>
