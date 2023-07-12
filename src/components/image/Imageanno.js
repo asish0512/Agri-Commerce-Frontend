@@ -6,6 +6,7 @@ import { postJSON } from '../../backend/Data';
 
 function LabelStudioTest() {
 
+  
     const {goatId} = useParams();
     const url = "https://picsum.photos/id/" + `${goatId}` + "/400/400";
     let inidata = []
@@ -16,19 +17,16 @@ function LabelStudioTest() {
         fetch('http://localhost:8000/image/getAnnots/' + `${goatId}/`)
         .then(results => results.json())
         .then(data => {
-           console.log(data?.data) 
            inidata = structuredClone(data?.data);
-           
         });
       }
       useEffect(() => {
            fetchData(); 
-           console.log("ini data", inidata) 
+           
       }, []);
 
     const handleSubmit = () => {
         const body = {'goat_id':goatId, 'data': finaldata}
-        console.log("body", body);
         const addimage_url = "http://localhost:8000/image/addAnnot/"
         postJSON(addimage_url, body);
     };
@@ -75,24 +73,22 @@ function LabelStudioTest() {
         },
   
         onLabelStudioLoad: function (LS) {
-            // structuredClone(inidata.serializeAnnotation());
           var c = LS.annotationStore.addAnnotation({
             userGenerate: true
           });
           LS.annotationStore.selectAnnotation(c.id);
-        },
-        onSubmitAnnotation: function (LS, annotation) {
-          // retrive an annotation
-          
+        }
         
+        ,
+        onSubmitAnnotation: function (LS, annotation) {
+          
             finaldata = structuredClone(annotation.serializeAnnotation());
-
 
           handleSubmit();
           console.log(annotation.serializeAnnotation());
         }
       });
-    }, [url]);
+    }, [inidata]);
   
     return (
       <div

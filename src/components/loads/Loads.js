@@ -19,27 +19,27 @@ const Loads = () => {
   }
   useEffect(() => {
        fetchData(); 
-  }, []);
+  }, [data?.data]);
 
-    const handleMerge = () => {
+
+  
+    const handleMerge = async() => {
       const loads = []  
       for (let i in mapper) {
         if (mapper[i] == 1)
           loads.push(i);
       }
-      console.log(loads)
       setClick(prev => !prev);
-      //post request merge operation
       const data = {'data': loads };
       const merge_url = "http://localhost:8000/load/mergeLoads/"
-      postJSON(merge_url, data)
+      await postJSON(merge_url, data)
       fetchData();
     };
 
-  const handleCreate =() => {
+  const handleCreate = async() => {
     const data = { };
     const url = "http://localhost:8000/load/createLoad/"
-    postJSON(url, data);
+    await postJSON(url, data);
     fetchData();
   };
 

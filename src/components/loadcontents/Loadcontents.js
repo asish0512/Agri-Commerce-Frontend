@@ -40,20 +40,17 @@ const Loadcontents = () => {
       }
       useEffect(() => {
            fetchData(); 
-           console.log("all goats", goats) 
       }, []);
 
 
       
 
-    const handleSubmit = (event) => {
-        // console.log(sex?.value, breed?.value, weight, photoUrl);
+    const handleSubmit = async (event) => {
         const data = { sex: sex?.value, breed: breed?.value, weight: weight, price:price, photo_url:photoUrl};
         const url = "http://localhost:8000/load/"+ `${params?.loadId}/`+"addGoat/"
-        postJSON(url, data);
+        await postJSON(url, data);
         fetchData()
         event.preventDefault();
-      //alert(`Name: ${formData.name}, Email: ${formData.email}, Message: ${formData.message}`);
     };
     
     const createGroupsList = ()=>{
@@ -68,13 +65,11 @@ const Loadcontents = () => {
           final[mapper[i]] = temp
         }
       }
-      // console.log(final)
       const finallist= []
       for (let i in final) {
         finallist.push(final[i])
       }
       
-      console.log("finallist", finallist)
       return finallist
     }
     

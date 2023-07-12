@@ -30,25 +30,21 @@ const Purchases = () => {
     });
   }
   useEffect(() => {
-    console.log(place?.value);
       if (place != null) {
        fetchData(place?.value); 
-       console.log("all goats", goats)
     } 
   }, [place]);
 
-  const handleBuy = () => {
+  const handleBuy = async()=> {
     const selectedgoats = []  
     for (let i in mapper) {
       if (mapper[i] == 1)
         selectedgoats.push(i);
     }
-    console.log(selectedgoats)
     setClick(prev => !prev);
-    //post request merge operation
     const data = {'data': selectedgoats };
     const buy_url = "http://localhost:8000/buy/buyGoats/"
-    postJSON(buy_url, data)
+    await postJSON(buy_url, data)
     fetchData();
   };
 

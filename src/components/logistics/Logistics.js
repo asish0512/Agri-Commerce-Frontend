@@ -25,12 +25,11 @@ const Logistics = () => {
     const [consignments, setConsignments] = useState([]);
 
 
-    const handleSubmit = (event) => {
-        // console.log(sex?.value, breed?.value, weight, photoUrl);
+    const handleSubmit =  async (event) => {
         const data = { load_id: loadno, agent_id: agentno, source: source, destination:destination};
         const url = "http://localhost:8000/logistics/addConsign/"
-        postJSON(url, data);
-        //fetchData()
+        await postJSON(url, data);
+        fetchData()
         event.preventDefault();
     };
 
@@ -45,7 +44,6 @@ const Logistics = () => {
       }
       useEffect(() => {
            fetchData(); 
-           console.log("all goats", consignments) 
       }, []);
 
 

@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 const Goat = ({id, sex, breed, weight, photourl, showSelect, mapper, groupsize}) => {
   const [group, setGroup] = useState("")
   
-  console.log('groupsize', groupsize)
 
   const groupno = []  
   for (let i = 1;i<=groupsize;i++) {
@@ -14,9 +13,7 @@ const Goat = ({id, sex, breed, weight, photourl, showSelect, mapper, groupsize})
   }
   
   useEffect(() => {
-    console.log('group', group)
     mapper[id] = group.value
-    console.log(mapper)
   },[group]);
   
   return (
